@@ -19,5 +19,5 @@ TODO
     Right now, the device filename is hardcoded, although it is different between Raspberry Pi Model A and Model B.
 * Add (hardware) SPI functionality
     Most examples for the Raspberry Pi propose "bit banging" the SPI bus through "regular" GPIO pins.
-    This is ridiculous since the Raspberry Pi provides hardware support for SPI at 10 MHz and there is a good kernel module for SPI, just like there is for I2C.
+    This is ridiculous since the Raspberry Pi provides hardware support for SPI at 10 MHz and there is a good kernel module for SPI, just like there is for I2C (smbus).
 * Add UART functionality
