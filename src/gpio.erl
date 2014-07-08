@@ -48,7 +48,6 @@ write_pin(Pin, Value) when is_integer(Value),
     ok = file:write_file(FileName, integer_to_list(Value)).
 
 read_pin(Pin) ->
-    io:format("Debug? ~p", [?DEBUG]),
     FileName = filename:join([?GPIO_BASENAME, ?PIN_NAME(Pin), "value"]),
     debug(FileName, Pin, read),
     {ok, Binary} = file:read_file(FileName),
