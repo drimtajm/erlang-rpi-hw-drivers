@@ -2,6 +2,7 @@
 
 -export([open_pin/1, close_pin/1]).
 -export([write_pin/2, set_pin_high/1, set_pin_low/1]).
+-export([read_pin/1]).
 -export([set_direction/2, set_output/1, set_input/1]).
 
 -define(GPIO_BASENAME, "/sys/class/gpio").
@@ -36,6 +37,13 @@ write_pin(Pin, Value) when is_integer(Value),
     FileName = filename:join([?GPIO_BASENAME, ?PIN_NAME(Pin), "value"]),
     debug(FileName, Pin),
     ok = file:write_file(FileName, integer_to_list(Value)).
+
+read_pin(Pin) ->
+    FileName = filename:join([?GPIO_BASENAME, ?PIN_NAME(Pin), "value"]),
+    debug(FileName, Pin),
+    {ok, Binary} = file:read_file(FileName),
+    {Val, _} = string:to_integer(lists:flatten(binary_to_list(Binary))),
+    Val.
     
 set_pin_high(Pin) ->
     write_pin(Pin, 1).
